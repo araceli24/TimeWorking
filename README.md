@@ -1,9 +1,9 @@
 # Time Working
 
-[![Build Status](https://travis-ci.org/araceli24/TimeWorking.svg?branch=master)](https://travis-ci.org/araceli24/TimeWorking)
+[![Build Status](https://travis-ci.org/araceli24/TimeWorking.svg?branch=feature%2Fbootstrap)](https://travis-ci.org/araceli24/TimeWorking)
 
 
-[![Coverage Status](https://coveralls.io/repos/github/araceli24/TimeWorking/badge.svg?branch=master)](https://coveralls.io/github/araceli24/TimeWorking?branch=feat/proving)
+[![Coverage Status](https://coveralls.io/repos/github/araceli24/TimeWorking/badge.svg?branch=feature%2Fbootstrap)](https://coveralls.io/github/araceli24/TimeWorking?branch=feature%2Fbootstrap)
 
 Instalacion
 
