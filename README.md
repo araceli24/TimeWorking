@@ -9,19 +9,16 @@ Instalacion
 
 
 ```bash
-pip install django
-```
-
-```bash
-django-admin startproject webapp .
-```
-
-```bash
-python manage.py runserver
+pipenv install --dev
 ```
 
 ```bash
 python manage.py makemigrations
 
 python manage.py migrate
+```
+
+
+```bash
+python manage.py runserver
 ```
