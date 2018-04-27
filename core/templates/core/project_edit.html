@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1>Nuevo Proyecto</h1>
+    <form method="POST" class="project-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">GUARDAR</button>
+        <button type="reset" class="reset btn btn-default">CANCELAR</button>
+       <br><br>
+        <a href="/"> Inicio </a>
+       
+    </form>
+{% endblock %}

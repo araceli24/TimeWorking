@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %} {% block content %}
+<div class="date">
+    {% if project.start %} {{ project.start }} {% endif %}
+   
+    <a href="{% url 'project_edit' pk=project.pk %}" class="btn btn-default">
+            Editar
+        </a>
+
+    <a href="{% url 'project_delete' pk=project.pk %}" class="btn btn-default">
+            Borrar
+        </a>
+
+</div>
+<h1>{{ project.name }}</h1>
+<p>{{ project.description|linebreaksbr }}</p>
+<a href="/">Inicio</a>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+<div class="jumbotron">
+
+    <h1>Hola, {{ user.get_username }} </h1>
+    <h4>Inicio: {% now " H:i" %} 
+    </h4>
+    <h4>Proyecto:
+
+        {% for journal in journals%}
+        
+        <small>{{ journal.project.name }}</small>
+        {% endfor %}
+    </h4>
+    <h4>Tiempo:
+        <small>
+
+        </small>
+    </h4>
+</div>

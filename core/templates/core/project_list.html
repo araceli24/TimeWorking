@@ -1,0 +1,26 @@
+ {% extends 'core/base.html' %} 
+ {% block content %} 
+ {% include 'core/navbar.html' %} 
+ {% include 'core/header.html' %}
+
+<h2>Proyectos</h2>
+
+{% for project in projects%}
+
+<div class="project">
+    <a href="{% url 'project_detail' pk=project.pk %}" class="list-group-item  flex-column align-items ">
+        <div class="d-flex w-100 justify-content-between">
+            <h3 class="mb-1"> {{ project.name}}</h3>
+        </div>
+        <p class="mb-1"> {{ project.description }}</p>
+    </a>
+
+    <a href="{% url 'project_start' pk=project.pk %}" class="btn btn-success">
+        Iniciar
+    </a>
+    <a href="{% url 'project_stop' pk=project.pk %}" class="btn btn-danger">
+        Pausar
+    </a>
+
+</div>
+{% endfor %} {% endblock %}
