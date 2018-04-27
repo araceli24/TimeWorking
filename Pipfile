@@ -21,3 +21,4 @@ psycopg2-binary = "*"
 [dev-packages]
 
 coverage = "*"
+django-debug-toolbar = "*"
