@@ -6,6 +6,11 @@ python:
 virtualenv:
 system_site_packages: true
 
+env:
+  global:
+    - PIPENV_VENV_IN_PROJECT=1
+    - PIPENV_IGNORE_VIRTUALENVS=1
+
 addons:
   postgresql: "9.6"
 
@@ -13,12 +18,15 @@ services:
   - postgresql
 
 install:
-  - pip install coveralls
   - pip install pipenv
   - pipenv install --dev
+  - pipenv install coveralls
 
 script:
-  - coverage run --source='.' manage.py test
+  #- coverage run --source='.' manage.py test
+  - pipenv run coverage erase
+  - pipenv run pytest --cov --cov-report= --junitxml=junit.xml
+  - pipenv run coverage xml -o coverage.xml
   
 after_success:
-- coveralls
+  - pipenv run coveralls

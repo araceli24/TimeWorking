@@ -38,32 +38,6 @@ def project_new(request):
         form = ProjectForm()
     return render(request, 'core/project_edit.html', {'form': form})
 
-# class ProjectNew(FormMixin, DetailView):
-#     template_name="core/project_edit.html"
-#     model = Project
-#     form_class = ProjectForm
-
-#     def get_success_url(self):
-#         return reverse('post_detail', kwargs={'pk': self.project.pk})
-
-#     def get_context_data(self, **kwargs):
-#         context = super(ProjectNew, self).get_context_data(**kwargs)
-#         context['form'] = ProjectForm(initial={'post': self.object})
-#         return context
-
-#     def post(self, request, *args, **kwargs):
-#         self.object = self.get_object()
-#         form = self.get_form()
-#         if form.is_valid():
-#             return self.form_valid(form)
-#         else:
-#             return self.form_invalid(form)
-
-#     def form_valid(self, form):
-#         form.save()
-#         return super(ProjectNew, self).form_valid(form)
-
-
 @login_required
 def project_edit(request, pk):
     project = get_object_or_404(Project, pk=pk)

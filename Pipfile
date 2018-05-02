@@ -17,8 +17,12 @@ djangorestframework = "*"
 django-heroku = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
+django-rest-auth = "*"
 
 [dev-packages]
 
 coverage = "*"
 django-debug-toolbar = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-django = "*"
