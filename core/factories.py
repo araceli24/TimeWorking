@@ -1,7 +1,6 @@
 import factory
 from .models import Project
 from django.contrib.auth.models import User
-import datetime as dt
 
 
 class UserFactory(factory.django.DjangoModelFactory):
