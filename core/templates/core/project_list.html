@@ -2,6 +2,7 @@
  {% block content %} 
  {% include 'core/navbar.html' %} 
  {% include 'core/header.html' %}
+ {% include 'core/cronometro.html' %}
 
 <h2>Proyectos</h2>
 
@@ -14,13 +15,18 @@
         </div>
         <p class="mb-1"> {{ project.description }}</p>
     </a>
-
-    <a href="{% url 'project_start' pk=project.pk %}" class="btn btn-success">
-        Iniciar
-    </a>
-    <a href="{% url 'project_stop' pk=project.pk %}" class="btn btn-danger">
-        Pausar
-    </a>
+    <div id="cronometro">
+            <form name="cron" action="#">
+                    <a href="{% url 'project_start' pk=project.pk  %}" class="btn btn-success">
+                            Iniciar
+                        </a>
+                        <a href="{% url 'project_stop' pk=project.pk %}" class="btn btn-danger">
+                            Pausar
+                        </a><br/>
+            </form>
+          </div>
+   
 
 </div>
+
 {% endfor %} {% endblock %}

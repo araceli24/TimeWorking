@@ -25,11 +25,7 @@ SECRET_KEY = 'i)#qfqt^$3_6@7137(*fejps0hd24(b!+02wi^2_!i&kp4e%cj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    
- #   os.getenv('ALLOWED_HOSTS', '').split(',')
 
-]
    
 # Application definition
 
@@ -89,7 +85,7 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 
 DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'timeworking',
         }
     }

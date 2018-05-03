@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 
 from .forms import ProjectForm
-from .models import Project, ActivityJournal
+from .models import Project, ActivityJournal, Registry
 
 
 # Create your views here.
@@ -98,7 +98,9 @@ class LoginWithCheckIn(LoginView):
     
         context= super() .form_valid(form)   
 
-        #check in
+        resp = super().form_valid(form)
+        new_registry = Registry(start=timezone.now(), user=self.request.user)
+        new_registry.save()
 
         return context
         
