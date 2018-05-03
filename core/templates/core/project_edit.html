@@ -2,12 +2,22 @@
 
 {% block content %}
     <h1>Nuevo Proyecto</h1>
-    <form method="POST" class="project-form">{% csrf_token %}
+    <form method="POST" onsubmit="return checkForm(this);" class="project-form">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">GUARDAR</button>
-        <button type="reset" class="reset btn btn-default">CANCELAR</button>
+        <button type="submit" id="myButton" class="save btn btn-default">GUARDAR</button>
+        <button type="reset" class="reset btn btn-default" >CANCELAR</button>
+        
        <br><br>
         <a href="/"> Inicio </a>
        
     </form>
+
+    <script >
+    function checkForm(form)
+        {
+        form.myButton.disabled = true;
+        return true;
+    }
+
+    </script>
 {% endblock %}

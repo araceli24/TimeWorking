@@ -44,7 +44,7 @@ class Project(models.Model):
 
 
 class ActivityJournal(models.Model):
-    start = models.DateTimeField(default=timezone.now)
+    start = models.DateTimeField(datetime.datetime.now())
     end = models.DateTimeField( null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
@@ -65,7 +65,7 @@ class ActivityJournal(models.Model):
 class Registry(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    start = models.DateTimeField(default=timezone.now)
+    start = models.DateTimeField(datetime.datetime.now())
     end = models.DateTimeField( blank=True)
 
     def __str__(self):
