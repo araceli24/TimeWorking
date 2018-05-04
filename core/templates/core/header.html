@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <div class="jumbotron">
 
     <h1>Hola, {{ user.get_username }} </h1>
@@ -10,11 +11,20 @@
         <small>{{ journal.project.name }}</small>
         {% endfor %}
     </h4>
-    <h4>Tiempo:
+    
         <small>
-           
-           
-                
+                <button onclick="getElementById('totalworked').innerHTML">Tiempo:</button>
+
+         
+            <div id="totalworked">{{ total_worked }}</div>
+            
+
+            <p id ="totalworked"></p>
+
+            <button onclick="getElementById('time').innerHTML = Date()">Hora actual:</button>
+
+                <p id="time"></p>
         </small>
-    </h4>
+
 </div>
+<script src="{% static 'js/chronometer.js' %}"></script>

@@ -1,11 +1,13 @@
+#from django.contrib.auth.decorators import login_required
 from django.conf.urls import url
 from django.urls import path
 from . import views
 from core.views import ProjectDetail
 
+
 urlpatterns = [
     url(r'^$', views.project_list, name='project_list'),
-
+    #path('', login_required(views.ProjectListView.as_view()), name='projects_list'),
     #url(r'^project/(?P<pk>\d+)/$', views.project_detail, name='project_detail'),
     url(r'^project/(?P<pk>\d+)/$', views.ProjectDetail.as_view(), name='project_detail'),
     url(r'^project/new/$', views.project_new, name='project_new'),

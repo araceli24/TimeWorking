@@ -4,6 +4,7 @@
  {% include 'core/header.html' %}
  {% include 'core/cronometro.html' %}
 
+
 <h2>Proyectos</h2>
 
 {% for project in projects%}
@@ -15,12 +16,12 @@
         </div>
         <p class="mb-1"> {{ project.description }}</p>
     </a>
-    <div id="cronometro">
+    <div id="chronometer">
             <form name="cron" action="#">
-                    <a href="{% url 'project_start' pk=project.pk  %}" class="btn btn-success">
+                    <a href="{% url 'project_start' pk=project.pk  %}" class="btn btn-outline-success" onclick="init();">
                             Iniciar
                         </a>
-                        <a href="{% url 'project_stop' pk=project.pk %}" class="btn btn-danger">
+                        <a href="{% url 'project_stop' pk=project.pk %}" class="btn btn-outline-danger" onclick="stop()">
                             Pausar
                         </a><br/>
             </form>

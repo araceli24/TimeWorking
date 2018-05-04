@@ -1,8 +1,9 @@
 import datetime
-
+from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
+#from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -20,6 +21,27 @@ def project_list(request):
     projects = Project.objects.filter(user=request.user)
     return render(request, 'core/project_list.html', {'projects': projects, 'journals': journals})
 
+#class ProjectListView(ListView):
+ #   model = Project
+  #  template_name = 'core/projects_list.html'
+
+   # def get_context_data(self, **kwargs):
+   #     context = super(ProjectListView, self).get_context_data(**kwargs)
+   #     total_time = Registry.objects.get(
+   #         user=self.request.user, end__isnull=True)
+  #      context.update({
+    #        'journals': ActivityJournal.objects.filter(end__isnull=True, user=self.request.user),
+    #        'total_worked': str(total_time.total_worked())
+    #    })
+    #    return context
+
+  #  def get_queryset(self):
+  #      qs = super().get_queryset().filter(user=self.request.user)
+
+   #     for p in qs:
+    #        p.total_time = p.time_calculator(self.request.user)
+
+     #   return qs
 
 class ProjectDetail(DetailView):
 
@@ -92,15 +114,19 @@ def project_stop(request, pk):
 
 class LoginWithCheckIn(LoginView):
 
-
     def form_valid(self, form):
     
-    
         context= super() .form_valid(form)   
-
-        resp = super().form_valid(form)
         new_registry = Registry(start=timezone.now(), user=self.request.user)
         new_registry.save()
 
         return context
         
+class LoginWithCheckOut(LogoutView):
+
+    def dispatch(self, request, *args, **kwargs):
+        registry = Registry.objects.get(user=self.request.user, end__isnull=True)
+        registry.check_out()
+        context = super().dispatch(request, *args, **kwargs)
+
+        return context

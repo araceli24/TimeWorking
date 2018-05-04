@@ -25,22 +25,18 @@ class Project(models.Model):
     
 
 
-    def diff_time(self):
+    def time_calculators(self, user):
         timers = self.activityjournal_set.filter(
-            user=user).values_list('time_lapse')
-
-        total_timers= 0
-
+            user=user, project=self).values_list('time_lapse')
+        total_time = 0
         for time in timers:
-            if time[1] != None:
-                 
-                total_timers += time[1]
+            if time[0] != None:
+                total_time += time[0]
 
-        return total_timers
+        return str(datetime.timedelta(seconds=total_time))
 
-    
     def __str__(self):
-       return self.name
+        return self.name
 
 
 class ActivityJournal(models.Model):
@@ -67,6 +63,13 @@ class Registry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     start = models.DateTimeField(datetime.datetime.now())
     end = models.DateTimeField( blank=True)
+
+    def total_worked(self):
+        return timezone.now() - self.start
+
+    def check_out(self):
+        self.end = timezone.now()
+        self.save()
 
     def __str__(self):
        return 'Usuario: {}, Hora de entrada: {}'.format(self.user, self.start)

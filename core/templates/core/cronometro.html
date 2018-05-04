@@ -1,67 +1,64 @@
 <html>
-
+<h3>Tiempo:</h3>
 <head>
 	<script>
-		var centesimas = 0;
-		var segundos = 0;
-		var minutos = 0;
-		var horas = 0;
+		var hundredths = 0;
+		var seconds = 0;
+		var minutes = 0;
+		var hours = 0;
 		function init() {
-			control = setInterval(cronometro, 10);
-			document.getElementById("inicio").disabled = true;
-			document.getElementById("parar").disabled = false;
-			document.getElementById("continuar").disabled = true;
-			document.getElementById("reinicio").disabled = false;
+			control = setInterval(chronometer, 10);
+			document.getElementById("start").disabled = true;
+			document.getElementById("stop").disabled = false;
+			document.getElementById("continue").disabled = false;
 		}
 		function stop() {
 			clearInterval(control);
-			document.getElementById("parar").disabled = true;
-			document.getElementById("continuar").disabled = false;
+			document.getElementById("stop").disabled = true;
 		}
 		function reset() {
 			clearInterval(control);
-			centesimas = 0;
-			segundos = 0;
-			minutos = 0;
-			horas = 0;
-			Centesimas.innerHTML = ":00";
-			Segundos.innerHTML = ":00";
-			Minutos.innerHTML = ":00";
-			Horas.innerHTML = "00";
-			document.getElementById("inicio").disabled = false;
-			document.getElementById("parar").disabled = true;
-			document.getElementById("continuar").disabled = true;
-			document.getElementById("reinicio").disabled = true;
+			hundredths = 0;
+			seconds = 0;
+			minutes = 0;
+			hours = 0;
+			hundredths.innerHTML = ":00";
+			seconds.innerHTML = ":00";
+			minutes.innerHTML = ":00";
+			hours.innerHTML = "00";
+			document.getElementById("start").disabled = false;
+			document.getElementById("stop").disabled = true;
+			document.getElementById("continue").disabled = true;
 		}
-		function cronometro() {
-			if (centesimas < 99) {
-				centesimas++;
-				if (centesimas < 10) { centesimas = "0" + centesimas }
-				Centesimas.innerHTML = ":" + centesimas;
+		function chronometer() {
+			if (hundredths < 99) {
+				hundredths++;
+				if (hundredths < 10) { hundredths = "0" + hundredths }
+				Hundredths.innerHTML = hundredths;
 			}
-			if (centesimas == 99) {
-				centesimas = -1;
+			if (hundredths == 99) {
+				hundredths = -1;
 			}
-			if (centesimas == 0) {
-				segundos++;
-				if (segundos < 10) { segundos = "0" + segundos }
-				Segundos.innerHTML = ":" + segundos;
+			if (hundredths == 0) {
+				seconds++;
+				if (seconds < 10) { seconds = "0" + seconds }
+				Seconds.innerHTML =  seconds;
 			}
-			if (segundos == 59) {
-				segundos = -1;
+			if (seconds == 59) {
+				seconds = -1;
 			}
-			if ((centesimas == 0) && (segundos == 0)) {
-				minutos++;
-				if (minutos < 10) { minutos = "0" + minutos }
-				Minutos.innerHTML = ":" + minutos;
+			if ((hundredths == 0) && (seconds == 0)) {
+				minutes++;
+				if (minutes < 10) { minutes = "0" + minutes }
+				Minutes.innerHTML = minutes;
 			}
-			if (minutos == 59) {
-				minutos = -1;
+			if (minutes == 59) {
+				minutes = -1;
 			}
-			if ((centesimas == 0) && (segundos == 0) && (minutos == 0)) {
-				horas++;
-				if (horas < 10) { horas = "0" + horas }
-				Horas.innerHTML = horas;
+			if ((hundredths == 0) && (seconds == 0) && (minutes == 0)) {
+				hours++;
+				if (hours < 10) { hours = "0" + hours }
+				Hours.innerHTML = hours;
 			}
 		}
 	</script>
@@ -71,17 +68,11 @@
 <body>
 
 
-	<div id="contenedor">
-
-
-		<div class="reloj" id="Horas">00</div>
-		<div class="reloj" id="Minutos">:00</div>
-		<div class="reloj" id="Segundos">:00</div>
-		<div class="reloj" id="Centesimas">:00</div>
-
-		<input type="button" class="boton" id="inicio" value="Start &#9658;" onclick="init();">
-		<input type="button" class="boton" id="parar" value="Stop &#8718;" onclick="stop();">
-		<input type="button" class="boton" id="reinicio" value="Reset &#8635;" onclick="reset();">
+	<div id="chronometer">
+		<span id="Hours">00</span>:<span id="Minutes">00</span>:<span id="Seconds">00</span>:<span id="Hundredths">00</span>
+		<input type="button" class="btn btn-success" id="start" value="Start &#9658;" onclick="init();">
+		<input type="button" class="btn btn-danger" id="stop" value="Stop &#8718;" onclick="stop();">
+		<input type="button" class="btn btn-warning" id="continue" value="Continue &#8635;" onclick="reset();">
 	</div>
 
 </body>
