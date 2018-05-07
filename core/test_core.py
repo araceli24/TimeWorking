@@ -5,36 +5,32 @@ from django.utils import timezone as tz
 import pytz
 
 import datetime as dt
-# Create your tests here.
+import pytest
 
-
-class TimeCalculator(TestCase):
-
-    def test_calculate_one_activity(self):
-        project = Project.objects.create()
-        user = User.objects.create()
-        activity_journal = ActivityJournal.objects.create(
-            project=project,
-            user=user,
-            start=tz.datetime(2018, 4, 18, 14, 0, 0, tzinfo=pytz.timezone('Europe/Madrid')),
-            end=tz.datetime(2018, 4, 18, 15, 0, 0, tzinfo=pytz.timezone('Europe/Madrid')),
-        )
+@pytest.mark.django_db
+def test_calculate_one_activity():
+    project = Project.objects.create()
+    user = User.objects.create()
+    activity_journal = ActivityJournal.objects.create(
+        project=project,
+        user=user,
+        start=tz.datetime(2018, 4, 18, 14, 0, 0, tzinfo=pytz.timezone('Europe/Madrid')),
+        end=tz.datetime(2018, 4, 18, 15, 0, 0, tzinfo=pytz.timezone('Europe/Madrid')),
+    )
         
-        total_time = project.time_calculator(user=user)
-        self.assertEqual(tz.timedelta(hours=1), total_time)
+    total_time = project.time_calculator(user=user)
+    assert(tz.timedelta(hours=1))== total_time
 
 
-class ActivityJournalModelTest(TestCase):
-
-    def test_close_activity(self):
-        project = Project.objects.create()
-        user = User.objects.create()
-        start_date = tz.now()-tz.timedelta(hours=3)
-        activity_journal = ActivityJournal.objects.create(
+@pytest.mark.django_db
+def test_close_activity():
+    project = Project.objects.create()
+    user = User.objects.create()
+    start_date = tz.now()-tz.timedelta(hours=3)
+    activity_journal = ActivityJournal.objects.create(
             project=project,
             user=user,
             start=start_date,
-        )
-        activity_journal.close_activity()
-        self.assertEqual(activity_journal.time_lapse,
-                         tz.timedelta(hours=3).total_seconds())
+    )
+    activity_journal.close_activity()
+    assert activity_journal.time_lapse == tz.timedelta(hours=3).total_seconds()
