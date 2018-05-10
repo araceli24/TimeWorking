@@ -2,8 +2,7 @@
 <div class="jumbotron">
 
     <h1>Hola, {{ user.get_username }} </h1>
-    <h4>Inicio: {% now " H:i" %} 
-    </h4>
+    <h4>Inicio: {% now " H:i" %} </h4>
     <h4>Proyecto:
 
         {% for journal in journals%}
@@ -11,15 +10,9 @@
         <small>{{ journal.project.name }}</small>
         {% endfor %}
     </h4>
+    <p class="lead"></p> <div id="timeworked">{{ total_worked_time  }}</div>
     
         <small>
-                <button onclick="getElementById('totalworked').innerHTML">Tiempo:</button>
-
-         
-            <div id="totalworked">{{ total_worked }}</div>
-            
-
-            <p id ="totalworked"></p>
 
             <button onclick="getElementById('time').innerHTML = Date()">Hora actual:</button>
 
@@ -27,4 +20,3 @@
         </small>
 
 </div>
-<script src="{% static 'js/chronometer.js' %}"></script>

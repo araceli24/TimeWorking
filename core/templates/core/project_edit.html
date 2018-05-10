@@ -4,7 +4,7 @@
     <h1>Nuevo Proyecto</h1>
     <form method="POST" onsubmit="return checkForm(this);" class="project-form">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" id="myButton" class="save btn btn-default">GUARDAR</button>
+        <button type="submit" id="btnSave" class="save btn btn-default">GUARDAR</button>
         <button type="reset" class="reset btn btn-default" >CANCELAR</button>
         
        <br><br>

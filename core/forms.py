@@ -14,11 +14,5 @@ class ProjectForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = 'name', 'user', 'description'
-        
-        
-class ActivityForm(forms.ModelForm):
-
-    class Meta:
-        model = ActivityJournal
-        fields = '__all__'
+        fields = ['name', 'user', 'description']
+  

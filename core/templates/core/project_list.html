@@ -1,7 +1,8 @@
  {% extends 'core/base.html' %} 
+ {% load staticfiles%}
  {% block content %} 
  {% include 'core/navbar.html' %} 
- {% include 'core/header.html' %}
+ {% include 'core/header.html' %} 
  {% include 'core/cronometro.html' %}
 
 
@@ -9,25 +10,52 @@
 
 {% for project in projects%}
 
-<div class="project">
-    <a href="{% url 'project_detail' pk=project.pk %}" class="list-group-item  flex-column align-items ">
-        <div class="d-flex w-100 justify-content-between">
-            <h3 class="mb-1"> {{ project.name}}</h3>
-        </div>
-        <p class="mb-1"> {{ project.description }}</p>
-    </a>
-    <div id="chronometer">
-            <form name="cron" action="#">
-                    <a href="{% url 'project_start' pk=project.pk  %}" class="btn btn-outline-success" onclick="init();">
-                            Iniciar
-                        </a>
-                        <a href="{% url 'project_stop' pk=project.pk %}" class="btn btn-outline-danger" onclick="stop()">
-                            Pausar
-                        </a><br/>
-            </form>
-          </div>
-   
+<div class="card w-100 " id="{{project.pk}}">
 
+    <table class="table table-bordered" id="{{project.pk}}">
+        <form name="editing" action="#">
+        <thead>
+            <tr>
+                <th>
+                    <h3> {{ project.name}}</h3>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody class="newDescription">
+            <tr>
+                <td> {{ project.description }}</td>
+            </tr>
+        </tbody>
+        </form>
+    </table>
+
+    <div id="{{project.pk}}">
+      
+            <a href="{% url 'project_start' pk=project.pk  %}" class="btn btn-outline-success" onclick="init();">
+                Iniciar
+            </a>
+            <a href="{% url 'project_stop' pk=project.pk %}" class="btn btn-outline-danger" onclick="stop()">
+                Pausar
+            </a>
+            <a href="{% url 'project_detail' pk=project.pk %}" class="btn btn-outline-danger">
+                Detalles
+            </a>
+
+            <br/>
+
+       
+    </div>
+    
+</div>
+{% endfor %}
+<div id="editsave">
+
+    <button data-target="{{ project.pk }}" class="btn btn-info" id="edit">edit</button>
+   
+    <button type="submit" class="btn btn-success" id="save">save</button>
+   
 </div>
 
-{% endfor %} {% endblock %}
+<script src="{% static 'js/edit.js' %}"></script>
+{% endblock %}
