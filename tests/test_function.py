@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from django.contrib.auth.models import User
+from selenium.webdriver.firefox.options import Options
 import pytest
 #def test_example (selenium, live_server):
  #   selenium.get(live_server.url)
@@ -15,10 +16,10 @@ import pytest
 def browser(request):
     """Provide a selenium webdriver instance."""
     # SetUp
-    options = webdriver.ChromeOptions()
+    options = webdriver.FirefoxOptions()
     #options.add_argument('headless')
 
-    browser_ = webdriver.Chrome(chrome_options=options)
+    browser_ = webdriver.Firefox(firefox_options=options)
 
     yield browser_
 
