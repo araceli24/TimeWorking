@@ -27,7 +27,7 @@ def browser(request):
     browser_.quit()
 
   
-
+@pytest.mark.django_db
 def test_login(browser, live_server):
   User.objects.create_user(username='Ara', password='adminadmin')
   browser.get(live_server.url)
