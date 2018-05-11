@@ -14,16 +14,10 @@ import pytest
 
 @pytest.fixture(scope='module')
 def browser(request):
-    """Provide a selenium webdriver instance."""
-    # SetUp
-    options = webdriver.FirefoxOptions()
-    #options.add_argument('headless')
-
+    options = Options()
+    #options.add_argument('-headless')
     browser_ = webdriver.Firefox(firefox_options=options)
-
     yield browser_
-
-    # TearDown
     browser_.quit()
 
   
