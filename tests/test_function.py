@@ -11,14 +11,13 @@ import pytest
 # def test_site_login(selenium, live_server):
 #      driver=selenium.get(live_server.url)
 
-
 @pytest.fixture(scope='module')
 def browser(request):
-    options = Options()
-    #options.add_argument('-headless')
-    browser_ = webdriver.Firefox(firefox_options=options)
-    yield browser_
-    browser_.quit()
+  options = Options()
+  options.add_argument('-headless')
+  browser_ = webdriver.Firefox(firefox_options=options)
+  yield browser_
+  browser_.quit()
 
   
 @pytest.mark.django_db
